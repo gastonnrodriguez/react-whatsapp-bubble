@@ -1,0 +1,30 @@
+{
+  "name": "react-whatsapp-float",
+  "version": "0.1.0",
+  "description": "Floating WhatsApp button component for React with pulse animation",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format cjs,esm --dts --external react framer-motion"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=10",
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "whatsapp",
+    "floating-button",
+    "react",
+    "widget"
+  ],
+  "license": "MIT"
+}
