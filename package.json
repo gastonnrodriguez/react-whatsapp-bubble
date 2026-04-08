@@ -1,5 +1,5 @@
 {
-  "name": "react-whatsapp-float",
+  "name": "react-whatsapp-bubble",
   "version": "0.1.0",
   "description": "Floating WhatsApp button component for React with pulse animation",
   "main": "dist/index.js",

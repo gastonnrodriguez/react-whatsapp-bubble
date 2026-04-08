@@ -1,4 +1,4 @@
-# react-whatsapp-float
+# react-whatsapp-bubble
 
 A lightweight, animated floating WhatsApp button for React. Drop it anywhere in your app and let users reach you in one click.
 
@@ -11,9 +11,9 @@ Un botón flotante de WhatsApp animado y liviano para React. Agregalo en cualqui
 ### Installation
 
 ```bash
-npm install react-whatsapp-float
+npm install react-whatsapp-bubble
 # or
-yarn add react-whatsapp-float
+yarn add react-whatsapp-bubble
 ```
 
 > **Peer dependencies:** `react >= 17` and `framer-motion >= 10` must be installed in your project.
@@ -23,7 +23,7 @@ yarn add react-whatsapp-float
 ### Usage
 
 ```tsx
-import { WhatsAppFloat } from 'react-whatsapp-float';
+import { WhatsAppFloat } from 'react-whatsapp-bubble';
 
 export default function App() {
   return (
@@ -120,9 +120,9 @@ The button renders fixed on screen — no wrapper or container needed.
 ### Instalación
 
 ```bash
-npm install react-whatsapp-float
+npm install react-whatsapp-bubble
 # o
-yarn add react-whatsapp-float
+yarn add react-whatsapp-bubble
 ```
 
 > **Peer dependencies:** `react >= 17` y `framer-motion >= 10` deben estar instalados en tu proyecto.
@@ -132,7 +132,7 @@ yarn add react-whatsapp-float
 ### Uso
 
 ```tsx
-import { WhatsAppFloat } from 'react-whatsapp-float';
+import { WhatsAppFloat } from 'react-whatsapp-bubble';
 
 export default function App() {
   return (
