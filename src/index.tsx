@@ -1,8 +1,7 @@
-import { motion } from 'framer-motion';
-
 export interface WhatsAppFloatProps {
   /**
-   * Phone number in international format, digits only.
+   * Phone number in international format. Anything that is not a digit
+   * (`+`, spaces, dashes) is removed.
    * @example "59899000000"
    */
   phone: string;
@@ -62,8 +61,9 @@ export function WhatsAppFloat({
   bottom = 24,
   side = 24,
 }: WhatsAppFloatProps) {
+  const digits = phone.replace(/\D/g, '');
   const encoded = message ? encodeURIComponent(message) : '';
-  const href = `https://wa.me/${phone}${encoded ? `?text=${encoded}` : ''}`;
+  const href = `https://wa.me/${digits}${encoded ? `?text=${encoded}` : ''}`;
 
   const sideStyle = position === 'bottom-left' ? { left: side } : { right: side };
 
@@ -75,24 +75,43 @@ export function WhatsAppFloat({
           70%  { transform: scale(1.65); opacity: 0; }
           100% { transform: scale(1.65); opacity: 0; }
         }
+        @keyframes waf-in {
+          from { opacity: 0; transform: scale(0); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        .waf-anchor {
+          animation: waf-in 0.4s ease-out 1.5s both;
+        }
         .waf-ping {
           animation: waf-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
         }
-        .waf-btn:hover {
+        .waf-btn:hover,
+        .waf-anchor:focus-visible .waf-btn {
           transform: scale(1.1);
         }
-        .waf-anchor:hover .waf-tooltip {
+        .waf-anchor:hover .waf-tooltip,
+        .waf-anchor:focus-visible .waf-tooltip {
           opacity: 1;
+        }
+        .waf-anchor:focus-visible {
+          outline: none;
+        }
+        .waf-anchor:focus-visible .waf-btn {
+          outline: 2px solid #fff;
+          outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .waf-anchor { animation: none; }
+          .waf-ping { display: none !important; }
+          .waf-btn { transition: none !important; }
         }
       `}</style>
 
-      <motion.a
+      <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 1.5 }}
+        aria-label={tooltip}
         className="waf-anchor"
         style={{
           position: 'fixed',
@@ -106,6 +125,7 @@ export function WhatsAppFloat({
         {/* Tooltip */}
         <span
           className="waf-tooltip"
+          aria-hidden="true"
           style={{
             position: 'absolute',
             top: -40,
@@ -160,7 +180,7 @@ export function WhatsAppFloat({
         >
           <WhatsAppIcon />
         </div>
-      </motion.a>
+      </a>
     </>
   );
 }

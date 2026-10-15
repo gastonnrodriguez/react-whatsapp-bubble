@@ -1,30 +1,55 @@
 {
   "name": "react-whatsapp-bubble",
-  "version": "0.1.0",
-  "description": "Floating WhatsApp button component for React with pulse animation",
+  "version": "0.2.0",
+  "description": "Floating WhatsApp button for React and Next.js, with a pulse animation. No dependencies.",
+  "license": "MIT",
+  "author": "Gastón Rodríguez (https://github.com/gastonnrodriguez)",
+  "homepage": "https://github.com/gastonnrodriguez/react-whatsapp-bubble#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gastonnrodriguez/react-whatsapp-bubble.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gastonnrodriguez/react-whatsapp-bubble/issues"
+  },
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
-    "build": "tsup src/index.tsx --format cjs,esm --dts --external react framer-motion"
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "framer-motion": ">=10",
     "react": ">=17"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
+    "@types/react": "^19.3.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
   "keywords": [
     "whatsapp",
+    "whatsapp-button",
     "floating-button",
     "react",
-    "widget"
-  ],
-  "license": "MIT"
+    "nextjs",
+    "widget",
+    "chat"
+  ]
 }

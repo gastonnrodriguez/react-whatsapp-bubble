@@ -1,8 +1,8 @@
 # react-whatsapp-bubble
 
-A lightweight, animated floating WhatsApp button for React. Drop it anywhere in your app and let users reach you in one click.
+A lightweight, animated floating WhatsApp button for React and Next.js, with no dependencies. Drop it anywhere in your app and let users reach you in one click.
 
-Un botón flotante de WhatsApp animado y liviano para React. Agregalo en cualquier parte de tu app y permitile a tus usuarios contactarte con un clic.
+Un botón flotante de WhatsApp animado y liviano para React y Next.js, sin dependencias. Agregalo en cualquier parte de tu app y permitile a tus usuarios contactarte con un clic.
 
 ---
 
@@ -16,7 +16,7 @@ npm install react-whatsapp-bubble
 yarn add react-whatsapp-bubble
 ```
 
-> **Peer dependencies:** `react >= 17` and `framer-motion >= 10` must be installed in your project.
+> Works with React 17, 18 and 19. No other dependencies.
 
 ---
 
@@ -37,13 +37,30 @@ export default function App() {
 
 The button renders fixed on screen — no wrapper or container needed.
 
+**Next.js (App Router):** it is already a client component, so you can render it straight from `app/layout.tsx`:
+
+```tsx
+import { WhatsAppFloat } from 'react-whatsapp-bubble';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <WhatsAppFloat phone="59899000000" />
+      </body>
+    </html>
+  );
+}
+```
+
 ---
 
 ### Props
 
 | Prop | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| `phone` | `string` | — | ✅ | Phone number in international format, digits only. No `+`, no spaces. |
+| `phone` | `string` | — | ✅ | Phone number in international format, with country code. `+`, spaces and dashes are removed. |
 | `message` | `string` | `undefined` | — | Pre-filled message that opens in the WhatsApp chat. |
 | `tooltip` | `string` | `"Escribinos por WhatsApp"` | — | Text shown on hover above the button. |
 | `pulse` | `boolean` | `true` | — | Whether to show the pulsing ring animation. |
@@ -112,6 +129,7 @@ The button renders fixed on screen — no wrapper or container needed.
 - The pulse ring color and button shadow always match the `color` prop.
 - The tooltip anchors to the same side as `position` so it never overflows the viewport.
 - The button fades in with a slight delay (1.5s) to avoid competing with the initial page load.
+- Accessible: the link is labelled with the `tooltip` text, the tooltip also shows on keyboard focus, and animations are turned off for users who prefer reduced motion.
 
 ---
 
@@ -125,7 +143,7 @@ npm install react-whatsapp-bubble
 yarn add react-whatsapp-bubble
 ```
 
-> **Peer dependencies:** `react >= 17` y `framer-motion >= 10` deben estar instalados en tu proyecto.
+> Funciona con React 17, 18 y 19. No tiene otras dependencias.
 
 ---
 
@@ -146,13 +164,30 @@ export default function App() {
 
 El botón se renderiza fijo en pantalla — no necesita ningún contenedor especial.
 
+**Next.js (App Router):** ya es un componente cliente, así que podés usarlo directo en `app/layout.tsx`:
+
+```tsx
+import { WhatsAppFloat } from 'react-whatsapp-bubble';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="es">
+      <body>
+        {children}
+        <WhatsAppFloat phone="59899000000" />
+      </body>
+    </html>
+  );
+}
+```
+
 ---
 
 ### Props
 
 | Prop | Tipo | Default | Requerida | Descripción |
 |------|------|---------|-----------|-------------|
-| `phone` | `string` | — | ✅ | Número de teléfono en formato internacional, solo dígitos. Sin `+`, sin espacios. |
+| `phone` | `string` | — | ✅ | Número de teléfono en formato internacional, con código de país. Se ignoran `+`, espacios y guiones. |
 | `message` | `string` | `undefined` | — | Mensaje pre-cargado que se abre en el chat de WhatsApp. |
 | `tooltip` | `string` | `"Escribinos por WhatsApp"` | — | Texto que aparece al hacer hover sobre el botón. |
 | `pulse` | `boolean` | `true` | — | Si se muestra el anillo animado de pulso alrededor del botón. |
@@ -221,9 +256,10 @@ El botón se renderiza fijo en pantalla — no necesita ningún contenedor espec
 - El color del anillo de pulso y la sombra del botón siempre coinciden con la prop `color`.
 - El tooltip se ancla del mismo lado que `position` para que nunca se salga del viewport.
 - El botón aparece con una pequeña demora (1.5s) para no competir visualmente con la carga inicial de la página.
+- Accesible: el link usa el texto de `tooltip` como etiqueta, el tooltip también aparece al navegar con teclado y las animaciones se apagan para quien prefiere movimiento reducido.
 
 ---
 
 ## License
 
-MIT
+[MIT](LICENSE)
